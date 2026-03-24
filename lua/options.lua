@@ -66,7 +66,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.o.cursorline = true
+-- vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
@@ -77,17 +77,17 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 vim.diagnostic.config {
-    update_in_insert = false,
-    severity_sort = true,
-    float = { border = 'rounded', source = 'if_many' },
-    underline = { severity = { min = vim.diagnostic.severity.WARN } },
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = 'rounded', source = 'if_many' },
+  underline = { severity = { min = vim.diagnostic.severity.WARN } },
 
-    -- Can switch between these as you prefer
-    virtual_text = false, -- Text shows up at the end of the line
-    virtual_lines = true, -- Text shows up underneath the line, with virtual lines
+  -- Can switch between these as you prefer
+  virtual_text = false, -- Text shows up at the end of the line
+  virtual_lines = true, -- Text shows up underneath the line, with virtual lines
 
-    -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
-    jump = { float = true },
+  -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
+  jump = { float = true },
 }
 
 -- [[ Basic Autocommands ]]
@@ -97,7 +97,33 @@ vim.diagnostic.config {
 --  Try it with `yap` in normal mode
 --  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
-    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-    callback = function() vim.hl.on_yank() end,
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function() vim.hl.on_yank() end,
 })
+
+-- Shell
+
+vim.opt.shell = vim.fn.executable 'nu' and 'nu' or 'nushell'
+
+-- Nushell flags:
+--   -c "command"   → run a command string
+vim.opt.shellcmdflag = '-c'
+
+-- Nushell redirections:
+--   stdout to file:  > filename
+--   stderr to file:  2> filename
+--
+-- Neovim uses `%s` as the destination file placeholder.
+vim.opt.shellredir = '> %s 2>&1'
+vim.opt.shellpipe = '| save %s'
+
+-- Nushell does not use quoting switches like PowerShell.
+vim.opt.shellquote = ''
+vim.opt.shellxquote = ''
+
+-- Force 4 spaces everywhere
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
