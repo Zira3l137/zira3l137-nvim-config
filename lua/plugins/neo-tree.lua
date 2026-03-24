@@ -21,6 +21,14 @@ return {
     opts = {
       popup_border_style = 'rounded',
       default_component_configs = {
+        diagnostics = {
+          symbols = {
+            error = '⛔',
+            warn = '⚠',
+            hint = '💡',
+            info = 'ℹ️',
+          },
+        },
         git_status = {
           symbols = {
             added = '+',
