@@ -11,17 +11,17 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 vim.keymap.set('n', '<leader>tv', function()
-    local current_value = vim.diagnostic.config().virtual_lines
-    vim.diagnostic.config({ virtual_lines = not current_value })
+  local current_value = vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config { virtual_lines = not current_value }
 end, { desc = 'Toggle Diagnostic Virtual Text' })
 
 vim.keymap.set('n', 'gl', function()
-    vim.diagnostic.open_float(nil, {
-        focus = false,
-        scope = "cursor",  -- "line" shows all on line, "cursor" only the specific error
-        border = "rounded",
-        source = "always", -- Shows if it's from Clippy, Ruff, etc.
-    })
+  vim.diagnostic.open_float(nil, {
+    focus = false,
+    scope = 'cursor', -- "line" shows all on line, "cursor" only the specific error
+    border = 'rounded',
+    source = 'always', -- Shows if it's from Clippy, Ruff, etc.
+  })
 end, { desc = 'Show floating diagnostics' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -42,22 +42,31 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
-vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
-vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
-vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
-vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+vim.keymap.set('n', '<C-S-h>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
+vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
 vim.keymap.set('n', '<C-q>', '<C-w>q', { desc = 'Close window' })
 
-vim.keymap.set('n', '<leader>c', ':bd<CR>', { desc = 'Close buffer' })
+-- vim.keymap.set('n', '<leader>c', ':bd<CR>', { desc = 'Close buffer' })
 
-vim.keymap.set("i", "jk", "<Esc>")
-vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save file" })
-vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
-vim.keymap.set("n", "\\", ":split<CR>", { desc = "Split window" })
-vim.keymap.set("n", "|", ":vsplit<CR>", { desc = "Split window" })
+vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save file' })
+vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { desc = 'Go to definition' })
+vim.keymap.set('n', '\\', ':split<CR>', { desc = 'Split window' })
+vim.keymap.set('n', '|', ':vsplit<CR>', { desc = 'Split window' })
 
-vim.keymap.set("n", "<leader>pm", ":Mason<CR>", { desc = "Open Mason" })
-vim.keymap.set("n", "<leader>pl", ":Lazy<CR>", { desc = "Open Lazy" })
+vim.keymap.set('n', '<leader>pm', ':Mason<CR>', { desc = 'Open Mason' })
+vim.keymap.set('n', '<leader>pl', ':Lazy<CR>', { desc = 'Open Lazy' })
 
-vim.keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Comment line" })
-vim.keymap.set("v", "<leader>/", "gc", { remap = true, desc = "Comment selection" })
+vim.keymap.set('n', '<leader>/', 'gcc', { remap = true, desc = 'Comment line' })
+vim.keymap.set('v', '<leader>/', 'gc', { remap = true, desc = 'Comment selection' })
+
+vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { remap = true, desc = 'Select all lines' })
+
+vim.keymap.set('n', '<leader>tt', function()
+  local Terminal = require('toggleterm.terminal').Terminal
+  Terminal:new({ direction = 'float' }):toggle()
+end, { desc = 'New Terminal' })
+
+vim.keymap.set('n', '<C-b>', function() vim.cmd 'execute "normal! \\<C-v>"' end, { desc = 'Block Selection' })
