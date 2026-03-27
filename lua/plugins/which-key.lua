@@ -15,25 +15,25 @@
 ---@module 'lazy'
 ---@type LazySpec
 return {
-    { -- Useful plugin to show you pending keybinds.
-        'folke/which-key.nvim',
-        event = 'VimEnter',
-        ---@module 'which-key'
-        ---@type wk.Opts
-        ---@diagnostic disable-next-line: missing-fields
-        opts = {
-            -- delay between pressing a key and opening which-key (milliseconds)
-            delay = 200,
-            icons = { mappings = vim.g.have_nerd_font },
+  { -- Useful plugin to show you pending keybinds.
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    ---@module 'which-key'
+    ---@type wk.Opts
+    ---@diagnostic disable-next-line: missing-fields
+    opts = {
+      -- delay between pressing a key and opening which-key (milliseconds)
+      delay = 200,
+      icons = { mappings = vim.g.have_nerd_font },
 
-            -- Document existing key chains
-            spec = {
-                { '<leader>s', group = '[S]earch',    mode = { 'n', 'v' } },
-                { '<leader>t', group = '[T]oggle' },
-                { '<leader>h', group = 'Git [H]unk',  mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
-                { 'gr',        group = 'LSP Actions', mode = { 'n' } },
-            },
-        },
+      -- Document existing key chains
+      spec = {
+        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+        { '<leader>t', group = '[T]oggle' },
+        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
+        { '<leader>l', group = 'LSP Actions', mode = { 'n' } },
+      },
     },
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et
