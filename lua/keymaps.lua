@@ -62,7 +62,7 @@ vim.keymap.set('n', '<leader>pl', ':Lazy<CR>', { desc = 'Open Lazy' })
 vim.keymap.set('n', '<leader>/', 'gcc', { remap = true, desc = 'Comment line' })
 vim.keymap.set('v', '<leader>/', 'gc', { remap = true, desc = 'Comment selection' })
 
-vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { remap = true, desc = 'Select all lines' })
+vim.keymap.set('n', '<C-a>', 'ggVG', { remap = true, desc = 'Select all lines' })
 
 vim.keymap.set('n', '<leader>tt', function()
   local Terminal = require('toggleterm.terminal').Terminal
