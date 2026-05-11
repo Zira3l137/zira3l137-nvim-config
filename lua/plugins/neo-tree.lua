@@ -23,10 +23,10 @@ return {
       default_component_configs = {
         diagnostics = {
           symbols = {
-            error = '⛔',
-            warn = '⚠',
-            hint = '💡',
-            info = 'ℹ️',
+            error = '󰅚',
+            warn = '󰀪',
+            hint = '󰌶',
+            info = '󰋽',
           },
         },
         git_status = {

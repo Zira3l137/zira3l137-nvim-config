@@ -1,7 +1,12 @@
 return {
   'chrisgrieser/nvim-origami',
-  event = 'VeryLazy',
-  opts = {}, -- required even when using default config
+  event = 'BufReadPost',
+  opts = {
+    useLspFoldsWithTreesitterFallback = {
+      enabled = true,
+      foldmethodIfNeitherIsAvailable = 'expr', -- was defaulting to 'indent'!
+    },
+  }, -- required even when using default config
 
   -- recommended: disable vim's auto-folding
   init = function()
