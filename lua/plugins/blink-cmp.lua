@@ -8,7 +8,6 @@ return {
     dependencies = {
       'bydlw98/blink-cmp-env',
       'Exafunction/codeium.nvim',
-      'MahanRahmati/blink-nerdfont.nvim',
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -59,17 +58,8 @@ return {
           'buffer',
           'env',
           'codeium',
-          'nerdfont',
         },
         providers = {
-          nerdfont = {
-            module = 'blink-nerdfont',
-            name = 'Nerd Fonts',
-            score_offset = 15, -- Tune by preference
-            opts = {
-              insert = true, -- Insert nerdfont icon (default) or complete its name
-            },
-          },
           codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
           env = {
             name = 'Env',
