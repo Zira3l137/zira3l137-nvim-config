@@ -81,6 +81,14 @@ vim.diagnostic.config {
   severity_sort = true,
   float = { border = 'rounded', source = 'if_many' },
   underline = { severity = { min = vim.diagnostic.severity.WARN } },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '󰅚',
+      [vim.diagnostic.severity.WARN] = '󰀪',
+      [vim.diagnostic.severity.HINT] = '󰌶',
+      [vim.diagnostic.severity.INFO] = '󰋽',
+    },
+  },
 
   -- Can switch between these as you prefer
   virtual_text = false, -- Text shows up at the end of the line
@@ -128,6 +136,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+-- Set default tab width for lua
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'lua',
   callback = function()
@@ -137,12 +146,14 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Enable folds per buffer
-vim.api.nvim_create_autocmd({ 'BufEnter', 'FileType' }, {
-  callback = function()
-    vim.opt_local.foldmethod = 'expr'
-    vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    vim.opt_local.foldlevel = 99
-    vim.opt_local.foldlevelstart = 99
-  end,
-})
+-- Enable icons for folds
+vim.opt.foldcolumn = '1' -- shows the fold column
+vim.opt.fillchars = {
+  fold = ' ',
+  foldopen = '', -- icon for open fold
+  foldclose = '', -- icon for closed fold
+  foldsep = ' ', -- separator between fold levels
+}
+
+-- Paint Codeium  suggestions grey
+vim.api.nvim_set_hl(0, 'CodeiumSuggestion', { fg = '#808080', italic = true })
