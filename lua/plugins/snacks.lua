@@ -4,11 +4,11 @@ return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
-  init = function()
-    vim.api.nvim_create_autocmd('VimEnter', {
-      callback = function() Snacks.dim() end,
-    })
-  end,
+  -- init = function()
+  --   vim.api.nvim_create_autocmd('VimEnter', {
+  --     callback = function() Snacks.dim() end,
+  --   })
+  -- end,
   opts = {
     dim = {
       enabled = true,
