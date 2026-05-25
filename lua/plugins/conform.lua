@@ -31,11 +31,17 @@ return {
           }
         end
       end,
+      formatters = {
+        rustfmt_nightly = {
+          command = 'rustup',
+          args = { 'run', 'nightly', 'rustfmt', '--edition', '2024' },
+        },
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'pyink' },
-        rust = { 'rustfmt' },
+        rust = { 'rustfmt_nightly' },
         nu = { 'nufmt' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
