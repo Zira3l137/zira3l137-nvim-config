@@ -8,7 +8,19 @@ return {
     branch = 'main',
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
     config = function()
-      local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim',
+        'vimdoc' }
+      local installed = require('nvim-treesitter.config').get_installed and
+      require('nvim-treesitter.config').get_installed() or {}
+      local installed_set = {}
+      for _, lang in ipairs(installed) do installed_set[lang] = true end
+
+      local missing = {}
+
+      for _, lang in ipairs(parsers) do
+        if not installed_set[lang] then table.insert(missing, lang) end
+      end
+      if #missing > 0 then require('nvim-treesitter').install(missing) end
       require('nvim-treesitter').install(parsers)
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)
