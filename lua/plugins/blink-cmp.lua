@@ -7,7 +7,6 @@ return {
     version = '1.*',
     dependencies = {
       'bydlw98/blink-cmp-env',
-      'Exafunction/codeium.nvim',
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -57,10 +56,8 @@ return {
           'path',
           'buffer',
           'env',
-          'codeium',
         },
         providers = {
-          codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
           env = {
             name = 'Env',
             module = 'blink-cmp-env',
